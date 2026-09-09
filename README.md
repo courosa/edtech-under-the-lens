@@ -50,6 +50,15 @@ The new storage key is `edtech-under-the-lens-v2`. Older `edtech-thought-lab-v1`
 
 Use [GitHub Issues](https://github.com/courosa/edtech-under-the-lens/issues) to report a problem or suggest an improvement. Include the activity, steps to reproduce the problem, and browser. Avoid sharing real student information.
 
-## Licence
+## Licenses
 
-Creative Commons Attribution 4.0 International (CC BY 4.0). Credit Dr. Alec Couros, link to the licence, and indicate changes. See [LICENSE](LICENSE) and the [licence summary](https://creativecommons.org/licenses/by/4.0/).
+- Activity prompts, briefs, instructional prose, and artwork: [CC BY 4.0](CONTENT-LICENSE.md).
+- Code (JavaScript, HTML markup, CSS, and deployment scripts): [MIT](LICENSE).
+
+Credit Dr. Alec Couros and identify changes to the content. Participant responses remain their own and are not licensed by this repository.
+
+## Publish updates
+
+GitHub `main` is the source for both live sites. In cPanel, open **Git Version Control**, manage **EdTech Under the Lens**, select **Pull or Deploy**, click **Update from Remote**, then **Deploy HEAD Commit**. Both destinations are updated together. This is a manual deployment workflow, not automatic publication on every commit.
+
+The deployment saves the previous site files outside the public web folders before copying the new version. Browser drafts remain untouched. See `deploy.php` and `.cpanel.yml`. Forks must change the deployment destinations before using this hosting configuration.
