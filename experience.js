@@ -119,7 +119,9 @@ $('home').onclick=goHome;$('another').onclick=goHome;
 $('brand').onclick=e=>{e.preventDefault();goHome();};
 function piecePages(i){
  const a=activities[i],s=states[i],b=briefFor(i);
- return a.pages.map(p=>({label:p[0],title:i===0?b[0]:s.answers.name||b[0],html:p[2].map(f=>`<p class="stagePrompt">${esc(f[1])}</p><p class="stageAnswer">${esc(s.answers[f[0]]?.trim()||'[Not added yet]')}</p>`).join('')}));
+ const title=i===0?b[0]:s.answers.name||b[0];
+ const context=`<section class="stageBrief" aria-label="Activity brief"><p class="stageBriefLabel">The brief${title!==b[0]?': '+esc(b[0]):''}</p><p class="stageBriefDescription">${esc(b[1])}</p></section>`;
+ return a.pages.map(p=>({label:p[0],title,html:context+p[2].map(f=>`<p class="stagePrompt">${esc(f[1])}</p><p class="stageAnswer">${esc(s.answers[f[0]]?.trim()||'[Not added yet]')}</p>`).join('')}));
 }
 function questionPages(i){return questions[i].map(q=>({label:q[2],title:activities[i].title,html:`<p class="question">${esc(q[0])}</p><p class="followup">${esc(q[1])}</p>`}));}
 function setStage(mode,i=stageActivity){stageMode=mode;stageActivity=i;stageIndex=0;stageItems=mode==='piece'?piecePages(i):mode==='questions'?questionPages(i):[];renderStage();}

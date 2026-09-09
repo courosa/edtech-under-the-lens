@@ -66,3 +66,5 @@ header .aboutLink{font-size:16px;font-weight:600;color:#c0e4fc;text-decoration:u
 
 .repoLink{display:inline-block;padding:12px 16px;border:1px solid #607e94;border-radius:6px;background:#243c4e;color:#c0e4fc;font-weight:700;text-decoration:none}
 .repoLink:hover{text-decoration:underline}
+
+.stageBrief{border-bottom:1px solid #7a98ad;padding-bottom:20px;margin-bottom:26px}.stagePage .stageBriefLabel{font-size:14px;font-weight:700;letter-spacing:.6px;color:#b7daf1;margin:0 0 8px}.stagePage .stageBriefDescription{font-size:clamp(18px,1.8vw,22px);line-height:1.5;color:#dce8f0;margin:0}
