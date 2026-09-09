@@ -86,10 +86,18 @@ function confirmAction(title,text,label,action){pendingAction=action;$('confirmT
 $('cancelAction').onclick=()=>{$('confirmDialog').close();};
 $('confirmDialog').addEventListener('close',()=>{pendingAction=null;});
 $('confirmAction').onclick=()=>{const action=pendingAction;pendingAction=null;$('confirmDialog').close();action?.();};
+function keepBriefInView(){
+ $('choose').focus({preventScroll:true});
+ const top=$('product').getBoundingClientRect().top;
+ const bottom=$('description').getBoundingClientRect().bottom;
+ const safeTop=document.querySelector('.toolbar').getBoundingClientRect().bottom+16;
+ // Leave the view alone unless the newly selected brief is outside it.
+ if(top<safeTop || bottom>window.innerHeight-16)window.scrollBy({top:top-safeTop,behavior:'instant'});
+}
 function setBrief(i){
  if(!Number.isInteger(i)||!activities[current].briefs[i])return;
  const s=states[current];if(i===s.brief&&!s.custom)return;
- const apply=()=>{states[current]={...freshState(),brief:i};save();render();showNotice('New brief selected. This activity starts at step 1.');focusHeading('pageHeading');};
+ const apply=()=>{states[current]={...freshState(),brief:i};save();render();showNotice('New brief selected. This activity starts at step 1.');keepBriefInView();};
  $('choose').value=s.custom?'custom':String(s.brief);
  if(hasWork(current))confirmAction('Change the brief?','This clears the answers and edited brief for this activity only. Download your draft first if you want to keep it.','Change brief & clear answers',apply);else apply();
 }
